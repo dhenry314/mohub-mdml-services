@@ -1,0 +1,212 @@
+{
+    "@context": {
+	"mdml":"http://data.mohistory.org/ns/mdml/",
+	"wp": "http://data.mohistory.org/ns/wp/"
+    },
+    "type": "jsonwsp/description",
+    "version": "1.0",
+    "servicename": "MHSServices",
+    "url": "http://localhost/MOHUBServices/serviceCall",
+    "types": {
+        "MDMLPayloadResponse": {
+		 "mdml:sourceURI":"string",
+                 "mdml:originURI":"string",
+                 "mdml:payload":"object"
+        },
+	"HelloWorldResponse": {
+		"content":"string",
+		"dateResponded":"string"
+	},
+	"IngestorResponse": {
+		"docsIngested": "integer",
+		"ingestedURIs": "array",
+		"errors": "array"
+	}
+    },
+    "methods": {
+		"HelloWorld": {
+			"doc_lines": ["A service for testing."],
+				"params": {
+					"yourName": {
+						"def_order": 1,
+						"doc_lines": ["Enter your name."],
+						"type": "string",
+						"optional": false
+					}
+				},
+				"ret_info": {
+					"doc_lines": ["The response should say hello to you."],
+					"type": ["HelloWorldResponse"]
+				}
+
+		},
+		"Testing": {
+			"mdml:serviceType": "mdml:E2E",
+			"doc_lines": ["A service for testing."],
+				"params": {
+					"mdml:sourceURI": {
+						"def_order": 1,
+						"doc_lines": ["Web url to input document."],
+						"type": "string",
+						"optional": true
+					},
+					"mdml:originURI": {
+						"def_order": 2,
+						"doc_lines": ["Web url to original document before ingested to an MDML endpoint."],
+						"type": "string",
+						"optional": true
+					}
+				},
+				"ret_info": {
+					"doc_lines": ["Standard MDML response with payload."],
+					"type": ["MDMLPayloadResponse"]
+				}
+		},
+		"mdml/OAIingestor": {
+			"mdml:serviceType": "mdml:S2E",
+			"doc_lines": ["A service for testing."],
+				"params": {
+					"OAIserviceURL": {
+						"def_order": 1,
+						"doc_lines": ["URL of OAI service feed."],
+						"type": "string",
+						"optional": false
+					},
+					"mdml:targetEndpoint": {
+			            "def_order": 2,
+						"doc_lines": ["The MDML endpoint that will accept records from the Wordpress api."],
+                        "type": "string",
+                        "optional": false
+                	},
+					"metadataPrefix": {
+						"def_order": 3,
+						"doc_lines": ["Metadata prefix - such as oai_dc or mods"],
+						"type": "string",
+						"optional": false
+					},
+					"sets": {
+						"def_order": 4,
+						"doc_lines": ["oai sets to ingest."],
+						"type": "string",
+						"optional": true
+					}
+				},
+				"ret_info": {
+					"doc_lines": ["Reponse from the ingest process."],
+					"type": ["IngestorResponse"]
+				}
+
+		},
+        "WordPressIngest": {
+            "doc_lines": ["Ingest records from a WordPress api."],
+            "params": {
+                "wp:sourceEndpoints": {
+                    "def_order": 1,
+                    "doc_lines": ["Array of WordPress api endpoints from which to pull records."],
+                    "type": "array",
+                    "optional": false
+                },
+				"mdml:targetEndpoint": {
+					"def_order": 2,
+					"doc_lines": ["The MDML endpoint that will accept records from the Wordpress api."],
+					"type": "string",
+					"optional": false	
+				}
+            },
+            "ret_info": {
+                "doc_lines": ["Standard MDML response with payload."],
+                "type": ["MDMLPayloadResponse"]
+            }
+        },
+        "mdml/jsonMapping": {
+			"mdml:serviceType": "mdml:E2E",
+            "doc_lines": ["Map a single json document with a given json map.",
+			  "Input can be either a path to a json document or  the input document itself.",
+			  "mdml:originURI can be used to keep track of a specific request."
+			],
+            "params": {
+				"mdml:map": {
+					"def_order": 1,
+					"doc_lines": ["json map."],
+					"type": "object",
+					"optional": true
+				},
+				"mdml:mapPath": {
+					"def_order": 2,
+					"doc_lines": ["Web url to a json map."],
+					"type": "string",
+					"optional": true
+				},
+				"mdml:sourceURI": {
+					"def_order": 3,
+					"doc_lines": ["Web url to input document."],
+					"type": "string",
+					"optional": true
+				},
+				"mdml:originURI": {
+					"def_order": 4,
+					"doc_lines": ["Web url to original document before ingested to an MDML endpoint."],
+					"type": "string",
+					"optional": true
+				},
+				"mdml:inputDocument": {
+					"def_order": 5,
+					"doc_lines": ["JSON document to be mapped."],
+					"type": "object",
+					"optional": true
+				},
+				"mdml:targetSchema": {
+					"def_order": 6,
+					"doc_lines": ["JSON schema to validate document before writing to endpoint"],
+					"type": "string",
+					"optional": true
+				}
+			},
+            "ret_info": {
+                "doc_lines": ["Standard MDML response with payload."],
+                "type": ["MDMLPayloadResponse"]
+            }
+        },
+        "mdml/toElasticSearch": {
+			"mdml:serviceType": "mdml:E2S",
+            "doc_lines": ["Post a single json document to a given ElasticSearch index."
+			],
+            "params": {
+				"mdml:sourceURI": {
+					"def_order": 1,
+					"doc_lines": ["JSON document to be published."],
+					"type": "string",
+					"optional": false
+				},
+				"mdml:originURI": {
+					"def_order": 2,
+					"doc_lines": ["URI of original document ingested."],
+					"type": "string",
+					"optional": false
+				},
+				"mdml:ESEndpoint": {
+					"def_order": 3,
+					"doc_lines": ["path to an ElasticSearch endpoint."],
+					"type": "string",
+					"optional": false
+				},
+				"mdml:ESindex": {
+					"def_order": 4,
+					"doc_lines": ["Name of the ElasticSearch index."],
+					"type": "string",
+					"optional": false
+				},
+				"mdml:auth": {
+					"def_order": 5,
+					"doc_lines": ["Credentials for authentication - if needed."],
+					"type": "object",
+					"optional": true
+				}
+			},
+            "ret_info": {
+                "doc_lines": ["Standard MDML response with payload."],
+                "type": ["MDMLPayloadResponse"]
+            }
+        }
+    }
+}

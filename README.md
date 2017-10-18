@@ -1,38 +1,29 @@
-# MDML Client SKEL
+## mdmlService Skeleton
 
-From mdmlCore/clientSkel.
+#INSTALLATION
 
-# Setup - Linux
+1. Copy config.php.example to config.php and set the values according to your installation
 
-0. Install git if not already installed:
+2. Create a sym link from /public to a web accessible directory.  Add that web accessible directory as 'BASE_PATH' to config.php
+
+3. Run 'composer install'
+
+4. Set the Apache web directory to allow an .htaccess file
 ```
-%>sudo apt-get install git
-```
-1. Clone or download mdmlCore.
-2. Add the path to mdmlCore/bin to $PATH
-3. Install python 2.7 and pip if not already installed
-4. Use pip to install requests module
-```
-%>pip install requests
-```
-5. Copy config.example.json to config.json and adjust paths accordingly.
-6. Test installation by running:
-```
-%>mdml help
+<Directory /var/www/webAccessibleDirectory/>
+       Options Indexes FollowSymLinks MultiViews
+       AllowOverride All
+</Directory>
 ```
 
-# Setup - Windows
+5. Ensure that there is a symlink from 'mdml' to $MDMLCore/mdmlServices/lib/
 
-0. Install git if not already installed (see https://www.atlassian.com/git/tutorials/install-git#windows)
-1. Clone or download mdmlCore.
-2. Add path to mdmlCore/bin to $PATH using Windows System configuration
-3. Install Python 2.7 (see https://www.python.org/downloads/release/python-2712rc1/)
-4. Install pip:
-```
-%>python C:\Python27\Scripts\get-pip.py
-```
-5. Copy config.example.windows.json to config.json and adjust paths accordingly
-6. Test installation by running:
-```
-%>mdml.bat help
+6. Run 'composer test' to check your installation
+
+7. Get a JWT token from your login service and put the token in the url params as 'jwt'.  
+	E.G. http://example.org/myServices/TestService?jwt=e9fh5JK67df59JH...
+
+8. Calling TestService as shown above should display "Hello World!"
+
+
 
