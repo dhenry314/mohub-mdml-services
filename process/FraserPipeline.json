@@ -1,0 +1,8 @@
+{
+    "serviceType": "Pipeline",
+    "services":[
+	"FraserIngest",
+	"FraserMapping",
+	"MOHUBPublishing"
+    ] 
+}

@@ -1,0 +1,19 @@
+{
+    "service": {
+        "args": {
+            "mdml:ESEndpoint": "__PLEASE_REPLACE__",
+            "mdml:ESindex": "__PLEASE_REPLACE__",
+            "mdml:auth": {
+                "_replace_": "__PLEASE_REMOVE_OR_REPLACE__"
+            },
+            "mdml:originURI": "_currentOriginURI",
+            "mdml:sourceURI": "_currentSourceURI"
+        },
+        "methodname": "mdml/toElasticSearch",
+        "type": "jsonwsp/request",
+        "version": "1.0"
+    },
+    "serviceType": "E2S",
+    "serviceURI": "http://localhost/MOHUBServices/serviceCall",
+    "sourceEndpoint": "http://localhost/MOHUBEndpoints/ingests/FRASER/resourcelist.xml"
+}

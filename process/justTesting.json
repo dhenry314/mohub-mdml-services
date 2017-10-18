@@ -1,0 +1,15 @@
+{
+    "service": {
+        "args": {
+            "mdml:originURI": "_currentOriginURI",
+            "mdml:sourceURI": "_currentSourceURI"
+        },
+        "methodname": "Testing",
+        "type": "jsonwsp/request",
+        "version": "1.0"
+    },
+    "serviceType": "E2E",
+    "serviceURI": "http://localhost/MOHUBServices/serviceCall",
+    "sourceEndpoint": "http://localhost/MOHUBEndpoints/ingests/FRASER/resourcelist.xml",
+    "targetEndpoint": "http://localhost/MOHUBEndpoints/testing"
+}

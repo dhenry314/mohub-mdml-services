@@ -1,0 +1,14 @@
+{
+    "service": {
+        "args": {
+            "OAIserviceURL": "https://fraser.stlouisfed.org/oai",
+            "mdml:targetEndpoint": "http://localhost/MOHUBEndpoints/ingests/FRASER/resourcelist.xml",
+            "metadataPrefix": "mods"
+        },
+        "methodname": "mdml/OAIingestor",
+        "type": "jsonwsp/request",
+        "version": "1.0"
+    },
+    "serviceType": "S2E",
+    "serviceURI": "http://localhost/MOHUBServices/serviceCall"
+}

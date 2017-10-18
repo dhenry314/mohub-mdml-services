@@ -1,0 +1,23 @@
+{
+    "service": {
+        "args": {
+            "mdml:inputDocument": {
+                "_replace_": "__PLEASE_REMOVE_OR_REPLACE__"
+            },
+            "mdml:map": {
+                "_replace_": "__PLEASE_REMOVE_OR_REPLACE__"
+            },
+            "mdml:mapPath": "__PLEASE_REMOVE_OR_REPLACE__",
+            "mdml:originURI": "_currentOriginURI",
+            "mdml:sourceURI": "_currentSourceURI",
+            "mdml:targetSchema": "__PLEASE_REMOVE_OR_REPLACE__"
+        },
+        "methodname": "mdml/jsonMapping",
+        "type": "jsonwsp/request",
+        "version": "1.0"
+    },
+    "serviceType": "E2E",
+    "serviceURI": "http://localhost/MOHUBServices/serviceCall",
+    "sourceEndpoint": "http://localhost/MOHUBEndpoints/ingests/FRASER/resourcelist.xml",
+    "targetEndpoint": "http://localhost/MOHUBEndpoints/MOHUB"
+}
