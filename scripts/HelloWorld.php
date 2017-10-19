@@ -26,7 +26,11 @@ $request = '{
         	"id": 1
     	}
 }';
-$result = $client->post($request,$url);
+try {
+	$result = $client->post($request,$url);
+} catch(Exception $e) {
+	die("Exception: " . print_r($e));
+}
 echo print_r($result);
 
 ?>
